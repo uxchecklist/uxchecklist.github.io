@@ -547,8 +547,21 @@
 				var elm = e.currentTarget;
 				ga('send', 'event', 'footer', $(elm).attr('title'));
 			});
+
 			$("input:checkbox").on('change', function(e){
 				var cb = $(this);
+				sendToGA(cb);
+				displayProfitMessage();
+			});
+
+			function displayProfitMessage() {
+				if ($('input:checkbox:checked').length == $('input:checkbox').length) {
+					window.alert("Everybody's happy! :)");
+				} else {
+					console.log("Sadness prevails.")
+				}
+			}
+			function sendToGA(cb) {
 				var id = cb.attr('id');
 				var isChecked = cb.is(':checked');
 				ga('send', 'event', {
